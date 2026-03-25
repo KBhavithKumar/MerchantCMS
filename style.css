@@ -1,0 +1,256 @@
+:root {
+    --primary-color: #00687b;
+    --background-color: #ffffff;
+    --on-background-color: #000000;
+    --surface-color: #afecff;
+    --on-surface-color: #000000;
+    --on-primary-color: #ffffff;
+}
+
+/* :root {
+    --primary-color: #6750A4;
+    --background-color: #ffffff;
+    --on-background-color: #000000;
+    --surface-color: #afecff;
+    --on-surface-color: #000000;
+    --on-primary-color: #ffffff;
+
+    --secondary-color-1: hsl(var(--primary-color-h), 70%, 60%);
+    --secondary-color-2: #e9ddff;
+} */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    opacity: 1;
+    background-image: radial-gradient(var(--primary-color) 0.85px, transparent 0.85px),
+        radial-gradient(var(--primary-color) 0.85px, var(--background-color) 0.85px);
+    background-size: 34px 34px;
+    background-position: 0 0, 17px 17px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    transition: ease-in 1s;
+}
+
+.generator {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--primary-color);
+    width: 90%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.Btn {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    font-weight: 600;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    color: var(--on-primary-color);
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.Btn.download {
+    background-color: #7F67BE;
+    border-color: #7F67BE;
+    margin-top: 10px;
+}
+
+.Btn:hover::before,
+.Btn.download:hover::before {
+    transition-duration: .5s;
+    transform: translate(100%, -50%);
+    border-radius: 0;
+}
+
+.Btn:active,
+.Btn.download:active {
+    transform: translate(5px, 5px);
+    transition-duration: .3s;
+}
+
+h1,
+h4 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.result-area {
+    margin-left: 0;
+    margin-top: 20px;
+    flex-shrink: 0;
+    max-width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#qrcode {
+    text-align: center;
+}
+
+.coolinput {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 480px;
+    position: static;
+    margin-bottom: 20px;
+}
+
+.coolinput label.text {
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 600;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 0 0 7px;
+    padding: 0 3px;
+    background: var(--background-color);
+}
+
+.coolinput input[type=text].input,
+.coolinput input[type=number].input,
+.coolinput select.input {
+    padding: 10px;
+    font-size: 0.75rem;
+    border: 2px var(--primary-color) solid;
+    border-radius: 5px;
+    background: var(--background-color);
+}
+
+.coolinput input[type=text].input:focus,
+.coolinput input[type=number].input:focus,
+.coolinput select.input:focus {
+    outline: none;
+}
+
+.toggle-button-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button.r {
+    position: relative;
+    top: 50%;
+    width: 74px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    padding-left: 1px;
+    padding-right: 1px;
+    box-shadow: inset 0px 0px 8px var(--primary-color);
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: var(--primary-color);
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+.button.r .layer {
+    border-radius: 100px;
+}
+
+#button-3 .knobs:before {
+    content: "VPA";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: var(--on-primary-color);
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active+.knobs:before {
+    width: 46px;
+    border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active+.knobs:before {
+    margin-left: -26px;
+}
+
+#button-3 .checkbox:checked+.knobs:before {
+    content: "AC";
+    left: 42px;
+    background-color: var(--primary-color);
+}
+
+#button-3 .checkbox:checked~.layer {
+    background-color: var(--surface-color);
+}
+
+#acInputs {
+    display: none;
+}
