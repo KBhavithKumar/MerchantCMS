@@ -78,7 +78,7 @@ $("#mtForm").submit(function(e) {
             $("#resultContainer").html(res);
         },
         error: function(err) {
-            $("#resultContainer").html("<p class='text-danger'>Error fetching results</p>");
+            $("#resultContainer").html(err);
         }
     });
 });
