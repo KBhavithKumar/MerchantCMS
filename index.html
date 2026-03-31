@@ -1,33 +1,88 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RGUKT MT Results</title>
+
+    <!-- Bootstrap 4 CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+        }
+        .btn-custom {
+            background: #22c55e;
+            border: none;
+        }
+        .btn-custom:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-lg">
+        <h3 class="text-center mb-4">📊 MT Results Portal</h3>
+
+        <form id="mtForm">
+            <div class="form-group">
+                <label>Select MT</label>
+                <select class="form-control" id="mtSelect" required>
+                    <option value="">Choose MT</option>
+                    <option value="mt1sem1ay2526">MT1 Sem1 AY2526</option>
+                    <option value="mt2sem1ay2526">MT2 Sem1 AY2526</option>
+                    <option value="mt3sem1ay2526">MT3 Sem1 AY2526</option>
+                    <option value="mt1sem2ay2526">MT1 Sem2 AY2526</option>
+                    <option value="mt2sem2ay2526">MT2 Sem2 AY2526</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-custom btn-block">
+                🚀 Show Results
+            </button>
+        </form>
+
+        <hr style="background:white;">
+
+        <div id="resultContainer">
+            <p class="text-center text-muted">Results will appear here...</p>
+        </div>
+    </div>
+</div>
 
 <script>
-$(document).ready(function() {
+$("#mtForm").submit(function(e) {
+    e.preventDefault();
 
-    $("form").submit(function(e) {
-        e.preventDefault();
+    let selectedMT = $("#mtSelect").val();
 
-        let selectedMT = $("#no_table_selected_mt").val();
+    $("#resultContainer").html("<p class='text-warning'>Loading...</p>");
 
-        $.ajax({
-            url: "https://hub.rgukt.ac.in/hub/mt/mtresults",
-            type: "POST",
-            data: {
-                selected_mt: selectedMT
-            },
-            xhrFields: {
-                withCredentials: true   // 🔥 required for cookies
-            },
-            success: function(response) {
-                $("#resultContainer").html(response);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
+    $.ajax({
+        url: "https://hub.rgukt.ac.in/hub/mt/mtresults",  // backend proxy
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ selected_mt: selectedMT }),
 
+        success: function(res) {
+            $("#resultContainer").html(res);
+        },
+        error: function(err) {
+            $("#resultContainer").html("<p class='text-danger'>Error fetching results</p>");
+        }
     });
-
 });
 </script>
 
-<div id="resultContainer"></div>
+</body>
+</html>
